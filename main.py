@@ -9,22 +9,15 @@ from resources.playlistTrack import playlistTrackResource
 from resources.search_and_filter import TracksByArtist, SearchForArtist
 
 from models import db
-
-import logging
-
+import os
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///music.db'
 
-#logging.basicConfig()
-#logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
-
+    
 #db = SQLAlchemy(app)
 db.init_app(app)
 api = Api(app)
-
-
-
 
 
 @app.route('/')
@@ -42,5 +35,5 @@ api.add_resource(SearchForArtist, '/artist/search')
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    app.run(debug=(os.getenv("FLASK_ENV") == 'development'))
 
