@@ -29,7 +29,7 @@ api = Api(app)
 
 @app.route('/')
 def home():
-    return 'All my bums'
+    return 'Home Page'
 
 api.add_resource(ArtistResource, '/artist', '/artist/<int:artist_id>')
 api.add_resource(AlbumResource, '/albums/<int:album_id>', '/artist/<int:artist_id>/albums', '/albums')
